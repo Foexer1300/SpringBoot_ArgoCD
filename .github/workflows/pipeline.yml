@@ -149,4 +149,5 @@ jobs:
           labels: production
           base: main
           head: deployment/${GITHUB_RUN_ID}
+          repo: "Foexer1300/ArgoCD_GitOps"
           token: ${{ secrets.GITHUB_TOKEN }}
