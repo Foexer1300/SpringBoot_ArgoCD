@@ -158,7 +158,7 @@ jobs:
           curl -X POST \
             -H "Authorization: token $GITHUB_TOKEN" \
             -d "$data" \
-            "https://api.github.com/repos/$%7B%7B Foexer1300 }}/ArgoCD_GitOps/pulls"
+            "https://api.github.com/repos/$%7B%7B Foexer1300/ArgoCD_GitOps/pulls"
         env:
           GITHUB_TOKEN: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
 
