@@ -148,16 +148,16 @@ jobs:
 
       # JSON-Daten für die API-Anfrage erstellen
           data='{
-          "title": "Deploy '"$version"' to production",
-          "head": "'"$branch_name"'",
-          "base": "main",
-          "body": "Pull Request body"
+            "title": "Deploy '"$version"' to production",
+            "head": "'"$branch_name"'",
+            "base": "main",
+            "body": "Pull Request body"
           }'
       
       # Die API-Anfrage durchführen, um den Pull Request zu erstellen
           curl -X POST \
-          -H "Authorization: token $GITHUB_TOKEN" \
-          -d "$data" \
-          "https://api.github.com/repos/Foexer1300/ArgoCD_GitOps/pulls"
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -d "$data" \
+            "https://api.github.com/repos/Foexer1300/ArgoCD_GitOps/pulls"
     env:
       GITHUB_TOKEN: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
