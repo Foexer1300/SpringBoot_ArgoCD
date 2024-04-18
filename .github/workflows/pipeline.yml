@@ -143,11 +143,22 @@ jobs:
 
       - name: Create Pull Request
         run: |
-          gh pr create \
-            --base main \
-            --head Bot-zweig \
-            --title "Deploy $version to production" \
-            --body "Pull Request erstellen" \
-            --repo Foexer1300/ArgoCD_GitOps
+          version=$(grep 'tag:' values_staging.yml | awk '{print $2}')
+          branch_name="branch-fuer-aenderungen"
+
+          # JSON-Daten für die API-Anfrage erstellen
+          data='{
+            "title": "Deploy '"$version"' to production",
+            "head": "'"$branch_name"'",
+            "base": "main",
+            "body": "Pull Request body"
+          }'
+
+          # Die API-Anfrage durchführen, um den Pull Request zu erstellen
+          curl -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -d "$data" \
+            "https://api.github.com/repos/$%7B%7B github.actor }}/ArgoCD_GitOps/pulls"
         env:
           GITHUB_TOKEN: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
+      ﻿
