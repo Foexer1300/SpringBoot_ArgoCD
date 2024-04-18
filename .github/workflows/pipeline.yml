@@ -144,7 +144,7 @@ jobs:
       - name: Create Pull Request
         run: |
           version=$(grep 'tag:' values_staging.yml | awk '{print $2}')
-          branch_name="branch-fuer-aenderungen"
+          branch_name="branch-des-Bots"
 
           # JSON-Daten für die API-Anfrage erstellen
           data='{
@@ -158,7 +158,7 @@ jobs:
           curl -X POST \
             -H "Authorization: token $GITHUB_TOKEN" \
             -d "$data" \
-            "https://api.github.com/repos/$%7B%7B github.actor }}/ArgoCD_GitOps/pulls"
+            "https://api.github.com/repos/$%7B%7B Foexer1300 }}/ArgoCD_GitOps/pulls"
         env:
           GITHUB_TOKEN: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
-      ﻿
+
