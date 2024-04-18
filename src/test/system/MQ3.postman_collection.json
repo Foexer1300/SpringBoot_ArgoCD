@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "871861f4-be6c-450c-8103-232338040837",
+		"name": "MQ3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34324427"
+	},
+	"item": [
+		{
+			"name": "https://api.coindesk.com/v1/bpi/currentprice.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Der Antwort-Statuscode ist 200.\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Die Antwort ist ein Objekt mit den Eigenschaften Zeit, Haftungsausschluss, Diagrammname und BPI.\r",
+							"pm.test(\"Response is an object with time, disclaimer, chartName, and bpi properties\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.an('object').that.has.all.keys('time', 'disclaimer', 'chartName', 'bpi');\r",
+							"});\r",
+							"\r",
+							"// Jede Währung im BPI hat die Eigenschaften Code, Symbol, Kurs, Beschreibung und Kurs_Float\r",
+							"pm.test(\"Each currency in bpi has code, symbol, rate, description, and rate_float properties\", function () {\r",
+							"    Object.values(pm.response.json().bpi).forEach(function(currency) {\r",
+							"        pm.expect(currency).to.have.all.keys('code', 'symbol', 'rate', 'description', 'rate_float');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://api.coindesk.com/v1/bpi/currentprice.json"
+			},
+			"response": []
+		}
+	]
+}
