@@ -152,7 +152,7 @@ jobs:
             "head": "'"$branch_name"'",
             "base": "main",
             "body": "Pull Request body"
-          }'
+           }'
       
       # Die API-Anfrage durchführen, um den Pull Request zu erstellen
           curl -X POST \
